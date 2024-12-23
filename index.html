@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/material-icons@1.13.12/iconfont/material-icons.min.css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>NaveBarre</title>
+  </head>
+  <body>
+    <div
+  id="login-page"
+  class="container bg-origin-content mx-auto flex justify-center items-center h-screen"
+>
+  <div
+    class="border-8 border-blue-500 shadow-md rounded-3xl p-4 pb-10 mb-4 w-2/5" 
+  >
+    <h1 class="text-3xl font-bold mb-8 text-center">Connecter</h1> <!-- Agrandir le titre -->
+    <form id="login-form">
+      <div class="mb-6"> <!-- Agrandir l'espace autour des champs -->
+        <label
+          for="email"
+          class="block text-gray-700 text-base font-bold mb-2" >
+        Email</label>
+        <input
+          type="email"
+          id="email"
+          placeholder="Entrer votre email"
+          class="shadow appearance-none border rounded w-full p-4 text-lg text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+          required
+        />
+      </div>
+      <div class="mb-8">
+        <label
+          for="password"
+          class="block text-gray-700 text-base font-bold mb-2" 
+        >Mot de passe</label>
+        <input
+          type="password"
+          id="password"
+          placeholder="********"
+          class="shadow appearance-none border rounded w-full py-4 text-lg text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          required
+        />
+      </div>
+      <div id="error-message" class="text-red-500 text-sm mb-6 hidden">
+        Identifiants incorrects
+      </div>
+      <button
+        type="submit"
+        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded focus:outline-none focus:shadow-outline w-full text-lg" 
+      >
+        Connecter
+      </button>
+    </form>
+  </div>
+</div>
+
+    <div id="dashboard" class="hidden w-full flex">
+      <nav class="conteneurPrincipal">
+        <div class="parentlogo"></div>
+        <div class="navigator"></div>
+      </nav>
+
+      <div
+      id="tooltip"
+      class="absolute hidden bg-gray-800 text-white text-sm rounded py-2 px-4 shadow-lg"
+      role="tooltip"
+      style="transform: translate(-50%, -120%);"
+    >
+    </div>
+
+      <div class="contentData">
+        <div class="header"></div>
+        <div class="entete"></div>
+        <div class="table"></div>
+      </div>
+    </div>
+    <div
+      id="dialog"
+      class="hidden fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center"
+    >
+      <div class="bg-white rounded-lg shadow-lg w-11/12 max-w-3xl p-6">
+        <div
+          class="flex justify-between items-center border-b p-4 bg-blue-500 rounded-t-md"
+        >
+          <h2 class="text-xl text-white font-semibold">Séances du cours</h2>
+          <button
+            id="closeDialog"
+            class="text-red-700 text-4xl hover:text-red-900"
+          >
+            &times;
+          </button>
+        </div>
+        <div
+          id="sessionsContainer"
+          class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4"
+        >
+          <!-- Les cartes des séances seront insérées ici -->
+        </div>
+        <div id="paginationControls" class="flex justify-end space-x-2 mt-4">
+          <!-- Les contrôles de pagination seront insérés ici -->
+        </div>
+      </div>
+    </div>
+    <!-- <h1>Liste des Étudiants</h1>
+  <ul id="etudiants"></ul>
+
+</div> -->
+
+    <script src="app.js"></script>
+  </body>
+</html>

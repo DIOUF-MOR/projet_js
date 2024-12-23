@@ -1,0 +1,96 @@
+{
+  "etudiant": {
+    "id": 1,
+    "nom": "Alice",
+    "email": "alice@example.com",
+    "cours": [1, 2]
+  },
+  "coursAvecSeances": [
+    {
+      "id": 1,
+      "nom": "Mathématiques",
+      "etudiants": [1, 3],
+      "seances": [
+        {
+          "id": 1,
+          "coursId": 1,
+          "date": "2024-12-10",
+          "sujet": "Introduction aux équations"
+        },
+        {
+          "id": 1,
+          "coursId": 1,
+          "date": "2024-12-10",
+          "sujet": "Introduction aux équations"
+        },
+        {
+          "id": 1,
+          "coursId": 1,
+          "date": "2024-12-10",
+          "sujet": "Introduction aux équations"
+        },
+        {
+          "id": 1,
+          "coursId": 1,
+          "date": "2024-12-10",
+          "sujet": "Introduction aux équations"
+        },
+        {
+          "id": 1,
+          "coursId": 1,
+          "date": "2024-12-10",
+          "sujet": "Introduction aux équations"
+        },
+        {
+          "id": 1,
+          "coursId": 1,
+          "date": "2024-12-10",
+          "sujet": "Introduction aux équations"
+        },
+        {
+          "id": 1,
+          "coursId": 1,
+          "date": "2024-12-10",
+          "sujet": "Introduction aux équations"
+        },
+        {
+          "id": 1,
+          "coursId": 1,
+          "date": "2024-12-10",
+          "sujet": "Introduction aux équations"
+        },
+        {
+          "id": 1,
+          "coursId": 1,
+          "date": "2024-12-10",
+          "sujet": "Introduction aux équations"
+        },
+        {
+          "id": 2,
+          "coursId": 1,
+          "date": "2024-12-17",
+          "sujet": "Calcul différentiel"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "nom": "Informatique",
+      "etudiants": [1, 2],
+      "seances": [
+        {
+          "id": 3,
+          "coursId": 2,
+          "date": "2024-12-12",
+          "sujet": "Introduction à la programmation"
+        },
+        {
+          "id": 4,
+          "coursId": 2,
+          "date": "2024-12-19",
+          "sujet": "Structures de données"
+        }
+      ]
+    }
+  ]
+}
