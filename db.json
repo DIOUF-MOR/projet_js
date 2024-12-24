@@ -3,6 +3,7 @@
     "id": 1,
     "nom": "Alice",
     "email": "alice@example.com",
+    "password": "1234",
     "cours": [1, 2]
   },
   "coursAvecSeances": [
