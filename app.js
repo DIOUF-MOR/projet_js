@@ -30,7 +30,12 @@ document.addEventListener("DOMContentLoaded", () => {
     e.preventDefault();
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
-
+    if (!email || !password) {
+      errorMessage.classList.remove("hidden");
+      errorMessage.textContent =
+        "Veuillez saisir votre email et votre mot de passe.";
+      return;
+    }
     login(email, password);
 
     async function login(email, password) {
@@ -178,7 +183,7 @@ document.addEventListener("DOMContentLoaded", () => {
             updatePagination();
 
             dialog.classList.remove("hidden");
-            dashboard.classList.add("hidden");
+            // dashboard.classList.add("hidden");
             loginPage.classList.add("hidden");
           });
 
@@ -274,17 +279,11 @@ document.addEventListener("DOMContentLoaded", () => {
   titreListe.textContent = "Liste des cours";
   titreListe.classList = "text-3xl";
 
-  const contentInputShers = document.createElement("span");
-  contentInputShers.classList = "w-1/3 flex items-center space-x-2";
-  const inputShers = document.createElement("input");
-  inputShers.classList =
-    "w-full h-16 rounded-md p-2 border border-gray-200 focus:outline-none focus:border-blue-500";
-  inputShers.placeholder = "Selectionner une semestre";
-  inputShers.type = "select";
-  contentInputShers.appendChild(inputShers);
+  const select = document.getElementById("select");
+  select.classList = "w-1/3 items-center  pr-1";
 
   entete.appendChild(titreListe);
-  entete.appendChild(contentInputShers);
+  entete.appendChild(select);
 
   contentData.appendChild(header);
   contentData.appendChild(entete);
@@ -339,12 +338,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     button.addEventListener("mouseover", () => {
       tooltip.innerText = text;
-      tooltip.style.left = `${
-        button.getBoundingClientRect().left + button.offsetWidth / 2
-      }px`;
-      tooltip.style.top = `${
-        button.getBoundingClientRect().top - tooltip.offsetHeight - 8
-      }px`;
+      const rect = button.getBoundingClientRect();
+      tooltip.style.left = `${rect.right + 30}px`;
+      tooltip.style.top = `${rect.top + 55}px`;
+
       tooltip.classList.remove("hidden");
     });
 
