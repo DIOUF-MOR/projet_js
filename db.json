@@ -1,11 +1,13 @@
 {
-  "etudiant": {
+  "etudiants": [
+    {
     "id": 1,
     "nom": "Alice",
     "email": "alice@example.com",
-    "password": "1234",
+    "password": "pass",
     "cours": [1, 2]
-  },
+  }
+],
   "coursAvecSeances": [
     {
       "id": 1,
