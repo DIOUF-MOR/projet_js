@@ -8,13 +8,10 @@ data = [
     titre: "Mes absences",
   },
 ];
-
-// Vérifie si l'utilisateur est connecté
 document.addEventListener("DOMContentLoaded", () => {
   const isLoggedIn = localStorage.getItem("isLoggedIn");
   let sessionsContainer = document.getElementById("sessionsContainer");
   let paginationControls = document.getElementById("paginationControls");
-
   let dashboard = document.getElementById("dashboard");
   let loginPage = document.getElementById("login-page");
 
@@ -32,15 +29,15 @@ document.addEventListener("DOMContentLoaded", () => {
       const etud = JSON.parse(etudiant);
 
       const etudiantCours = coursList.filter((c) =>
-        etud.cours.includes(c.id)
+        etud.cours.includes(parseInt(c.id))
       );
 
       const seancesResponse = coursResponse.seances;
 
-      let coursAvecSeances = etudiantCours.map((cours) => ({
-        ...cours,
+      let cours = etudiantCours.map((crs) => ({
+        ...crs,
       }));
-      let cours = coursAvecSeances;
+      
 
       let table = document.querySelector(".table");
       table.classList = "flex flex-col w-full h-full p-4 shadow-md";
@@ -170,7 +167,7 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log("Cours et séances associés :", cours);
       dashboard.classList.remove("hidden");
 
-   
+  
   }
 
   const closeDialogButton = document.getElementById("closeDialog");
@@ -289,7 +286,6 @@ document.addEventListener("DOMContentLoaded", () => {
       button.classList.toggle("justify-center");
     }
   });
-
   function showTooltip(button, text) {
     let tooltip = document.getElementById("tooltip");
     if (!tooltip) {

@@ -3,21 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/material-icons@1.13.12/iconfont/material-icons.min.css"
-  /> -->
-  <link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css"
-/>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css"
+    />
     <title>Tableau de bord</title>
     <script src="../app.js" defer></script>
     <script src="etudiant.js" defer></script>
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body class="bg-gray-100 h-screen">
-    <div id="dashboard" class="hidden w-full flex">
+    <div id="dashboard" class="hidden w-full h-full flex">
       <nav class="conteneurPrincipal">
         <div class="parentlogo"></div>
         <div class="navigator"></div>
@@ -30,8 +26,8 @@
         style="transform: translate(-50%, -120%)"
       ></div>
 
+      <div class="header"></div>
       <div class="contentData">
-        <div class="header"></div>
         <div class="entete"></div>
         <div class="table"></div>
       </div>
