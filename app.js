@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Si l'utilisateur est connecté, rediriger depuis index.html
   if (window.location.pathname === "/index.html" && isLoggedIn) {
 
-    window.location.href = "etudiant/etudiant.html";
+    window.location.href = "navBar/nav.html";
   }
 
   // Si l'utilisateur est déconnecté et tente d'accéder à une page protégée
