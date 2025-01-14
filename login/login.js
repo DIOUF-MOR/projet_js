@@ -3,10 +3,8 @@ document.addEventListener("DOMContentLoaded", function () {
   if (form) {
     form.addEventListener("submit", async function (event) {
       event.preventDefault();
-
       const username = document.getElementById("email").value;
       const password = document.getElementById("password").value;
-
       if (username && password) {
         try {
           const response = await fetch("http://localhost:3000/etudiants");
@@ -14,14 +12,11 @@ document.addEventListener("DOMContentLoaded", function () {
           if (!response.ok) {
             throw new Error("Erreur lors de la récupération des données.");
           }
-
           const etudiants = await response.json();
-
           // Trouver l'étudiant correspondant
           const etudiant = etudiants.find(
             (e) => e.email === username && e.password === password
           );
-
           if (etudiant) {
             console.log(
               "Connexion réussie :",
@@ -29,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
             );
             localStorage.setItem("isLoggedIn", "true");
             localStorage.setItem("etudiant", JSON.stringify(etudiant));
-            window.location.href = "../etudiant/etudiant.html";
+            window.location.href = "../navBar/nav.html";
           } else {
             alert("Nom d'utilisateur ou mot de passe incorrect.");
           }

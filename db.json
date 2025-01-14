@@ -1,11 +1,27 @@
 {
+  "classes":[
+    {
+      "id":1,
+      "libelle":"L1 DEV WEB",
+      "filiere":"DEV WEB",
+      "niveau":"L1",
+      "etudiants":[1,2,3]
+    },
+    {
+      "id":2,
+      "libelle":"L2 disign",
+      "filiere":"disign",
+      "niveau":"L2",
+      "etudiants":[4,5]
+    }
+  ],
   "etudiants": [
     {
       "id": 1,
       "nom": "Alice",
       "email": "alice@example.com",
       "password": "pass",
-      "role": "ETUDIANT",
+      "role": "ROLE_ETUDIANT",
       "cours": [1, 2]
     },
     {
@@ -13,9 +29,33 @@
       "nom": "Mor",
       "email": "mor@example.com",
       "password": "pass",
-      "role": "ETUDIANT",
+      "role": "ROLE_ETUDIANT",
       "cours": [1, 3]
+    },
+    {
+      "id": 4,
+      "nom": "Bocar",
+      "email": "bocar@example.com",
+      "password": "pass",
+      "role": "ROLE_ETUDIANT",
+      "cours": [1, 3]
+    },
+    {
+      "id": 5,
+      "nom": "Manel",
+      "email": "manel@example.com",
+      "password": "pass",
+      "role": "ROLE_ETUDIANT",
+      "cours": [1, 3]
+    },
+    {
+      "id": 3,
+      "nom": "Djiadji",
+      "email": "bass@example.com",
+      "password": "pass",
+      "role": "ROLE_RP"
     }
+    
   ],
   "absences": [
     {

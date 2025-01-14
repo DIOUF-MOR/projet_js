@@ -1,25 +1,35 @@
 
 const isLoggedIn = localStorage.getItem("isLoggedIn");
-let sessionsContainer = document.getElementById("sessionsContainer");
-let paginationControls = document.getElementById("paginationControls");
-// let loginPage = document.getElementById("login-page");
+const content=document.getElementById("content")
+const entete=document.getElementById("entete")
+const anneeEnCours=document.getElementById("anneeEnCours")
+const table=document.getElementById("table")
 
 if (!isLoggedIn) {
-  window.location.href = "../login/login.html";
+    window.location.href = "../login/login.html";
 }
-login();
-async function login() {
-  const coursResponse = await fetch("http://localhost:3000/coursAvecSeances");
-  const coursList = await coursResponse.json();
-  const etudiant = localStorage.getItem("etudiant");
-  const etud = JSON.parse(etudiant);
-  const etudiantCours = coursList.filter((c) =>
-    etud.cours.includes(parseInt(c.id))
-  );
-  let cours = etudiantCours.map((crs) => ({
-    ...crs,
-  }));
-  let table = document.querySelector(".table");
+let cours=[]
+anneeEnCours.classList="flex text-2xl justify-end p-4"
+const annee=document.createElement("h1")
+annee.innerText="Année Scolaire : 2025 - 2026"
+anneeEnCours.appendChild(annee)
+content.classList = "flex flex-col space-y-2 w-full h-screen";
+entete.classList =
+  "flex justify-between items-center bg-gray-50 w-full h-24 p-4";
+const titreListe = document.createElement("h1");
+titreListe.textContent = "Liste des classes";
+titreListe.classList = "text-3xl";
+const select = document.getElementById("select");
+select.classList = "w-1/3 items-center";
+entete.appendChild(titreListe);
+entete.appendChild(select);
+content.append(anneeEnCours,entete,table)
+listerClasses();
+async function listerClasses() {
+    const classes=await fetch("http://localhost:3000/classes")
+    const classeList=await classes.json();
+    cours=classeList
+
   table.classList = "flex flex-col w-full h-full p-4 shadow-md";
   const thead = document.createElement("thead");
   thead.classList = "w-full text-white ";
@@ -31,12 +41,19 @@ async function login() {
   const th2 = document.createElement("th");
   th2.textContent = "Nom";
   th2.classList = "w-1/3 text-center p-4";
+
   const th3 = document.createElement("th");
-  th3.textContent = "Voir sceances";
-  th3.classList = "w-1/3 text-right p-4";
-  tr.appendChild(th1);
-  tr.appendChild(th2);
-  tr.appendChild(th3);
+  th3.textContent = "Filière";
+  th3.classList = "w-1/3 text-center p-4";
+
+  const th4 = document.createElement("th");
+  th4.textContent = "Niveau";
+  th4.classList = "w-1/3 text-center p-4";
+
+  const th5 = document.createElement("th");
+  th5.textContent = "Liste etudiants";
+  th5.classList = "w-1/3 text-right p-4";
+  tr.append(th1,th2,th3,th4,th5);
   thead.appendChild(tr);
   table.appendChild(thead);
   const tbody = document.createElement("tbody");
@@ -49,16 +66,25 @@ async function login() {
     td1.textContent = cours[i].id;
     td1.classList = "w-1/3 text-left p-4";
     const td2 = document.createElement("td");
-    td2.textContent = cours[i].nom;
+    td2.textContent = cours[i].libelle;
     td2.classList = "w-1/3 text-center p-4";
+
     const td3 = document.createElement("td");
+    td3.textContent = cours[i].filiere;
+    td3.classList = "w-1/3 text-center p-4";
+
+    const td4 = document.createElement("td");
+    td4.textContent = cours[i].niveau;
+    td4.classList = "w-1/3 text-center p-4";
+
+    const td5 = document.createElement("td");
     const icon = document.createElement("i");
     icon.classList =
       "nav-icon fas fa-eye text-2xl mr-2 text-blue-500 cursor-pointer";
-    td3.appendChild(icon);
-    td3.classList = "w-1/3 text-right pr-8 p-4";
-    td3.addEventListener("click", () => {
-      const seances = cours[i].seances;
+    td5.appendChild(icon);
+    td5.classList = "w-1/3 text-right pr-8 p-4";
+    td5.addEventListener("click", () => {
+      const seances = cours[i].etudiants;
       const itemsPerPage = 8; // Nombre d'éléments par page
       let currentPage = 1;
       function displaySessions() {
@@ -121,38 +147,9 @@ async function login() {
       updatePagination();
       dialog.classList.remove("hidden");
     });
-    tr.appendChild(td1);
-    tr.appendChild(td2);
-    tr.appendChild(td3);
+    tr.append(td1,td2,td3,td4,td5);
     tbody.appendChild(tr);
   }
   table.appendChild(tbody);
-  contentData.appendChild(table);
   console.log("Cours et séances associés :", cours);
 }
-const closeDialogButton = document.getElementById("closeDialog");
-closeDialogButton.addEventListener("click", () => {
-  dialog.classList.add("hidden");
-  dashboard.classList.remove("hidden");
-});
-
-dialog.addEventListener("click", (e) => {
-  if (e.target === dialog) {
-    dialog.classList.add("hidden");
-    dashboard.classList.remove("hidden");
-  }
-});
-const contentData = document.querySelector(".contentData");
-contentData.classList = "flex flex-col space-y-2 w-full h-screen";
-const entete = document.querySelector(".entete");
-entete.classList =
-  "flex justify-between items-center bg-gray-50 w-full h-24 p-4";
-const titreListe = document.createElement("h1");
-titreListe.textContent = "Liste des cours";
-titreListe.classList = "text-3xl";
-const select = document.getElementById("select");
-select.classList = "w-1/3 items-center  pr-1";
-entete.appendChild(titreListe);
-entete.appendChild(select);
-contentData.appendChild(entete);
-
