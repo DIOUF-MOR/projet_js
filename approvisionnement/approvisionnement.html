@@ -1,0 +1,279 @@
+<!-- <!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Liste des Tissus</title>
+    <script defer src="approvisionnement.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100 text-gray-800">
+    <div class="max-w-7xl mx-auto p-6">
+      <h1 class="text-2xl font-bold mb-4">📦 Liste des ventes</h1>
+      <div id="tissu-table-container"></div>
+    </div>
+  </body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Gestion des Tissus</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="approvisionnement.js"></script>
+    <script defer src="../app.js"></script>
+  </head>
+  <body class="bg-blue-100 p-6 text-sm">
+    <div class="max-w-6xl mx-auto space-y-6 bg-white p-6">
+      <form id="tissu-form" class="grid grid-cols-2 gap-4 rounded-xl">
+        <div class="space-y-3">
+          <input
+            type="text"
+            name="libelle"
+            placeholder="Libelle"
+            class="w-full border px-3 py-2 rounded"
+            required
+          />
+
+          <div class="flex items-center gap-2">
+            <select
+              id="mySelect"
+              class="block w-full p-2.5 border border-gray-300 rounded-lg text-gray-900 focus:ring-blue-500 focus:border-blue-500"
+            >
+              <option disabled selected>Chargement...</option>
+            </select>
+            <button id="openCategorieModal" type="button" class="text-xl">
+              ➕
+            </button>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <input
+              type="number"
+              name="quantite"
+              placeholder="Quantité"
+              class="w-1/2 border px-3 py-2 rounded"
+              required
+            />
+            <select name="unite" class="w-1/2 border px-3 py-2 rounded">
+              <option value="1">mètre</option>
+            </select>
+            <button id="openModalUnite" type="button" class="text-xl">
+              ➕
+            </button>
+          </div>
+
+          <input
+            type="number"
+            name="prix"
+            placeholder="Prix"
+            class="w-full border px-3 py-2 rounded"
+            required
+          />
+
+          <button type="submit" class="bg-black text-white px-4 py-2 rounded">
+            VALIDER
+          </button>
+        </div>
+
+        <div class="space-y-3 flex flex-col items-center justify-start">
+          <div class="flex w-full items-center gap-2">
+            <input
+              id="fournisseur"
+              type="text"
+              name="fournisseur"
+              placeholder="Fournisseur"
+              class="w-full border px-3 py-2 rounded"
+              required
+            />
+            <button id="openModalBtn" type="button" class="text-xl">➕</button>
+          </div>
+
+          <div
+            class="w-40 h-40 border flex items-center justify-center bg-gray-100 rounded"
+          >
+            <span class="text-gray-500">📷</span>
+          </div>
+          <p class="text-xs text-gray-700">Référence : Baz-Tissu-0001</p>
+        </div>
+      </form>
+      <div class="overflow-x-auto">
+        <table class="min-w-full bg-white border rounded-xl shadow">
+          <thead class="bg-black text-white">
+            <tr>
+              <th class="px-4 py-2">Libelle</th>
+              <th class="px-4 py-2">Categorie</th>
+              <th class="px-4 py-2">Quantite</th>
+              <th class="px-4 py-2">Prix</th>
+              <th class="px-4 py-2">Fournisseur</th>
+              <th class="px-4 py-2">Unite</th>
+              <th class="px-4 py-2">Action</th>
+            </tr>
+          </thead>
+          <tbody id="tissu-table-body"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div
+      id="modal"
+      class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden z-50"
+    >
+      <div class="bg-white p-6 rounded-xl w-96 shadow-lg">
+        <h2 class="text-xl font-bold mb-4 text-center">
+          Ajouter un Fournisseur
+        </h2>
+        <form id="fournisseurForm" class="flex flex-col gap-3">
+          <input
+            type="text"
+            name="prenom"
+            placeholder="Prénom"
+            class="border px-3 py-2 rounded"
+            required
+          />
+          <input
+            type="text"
+            name="nom"
+            placeholder="Nom"
+            class="border px-3 py-2 rounded"
+            required
+          />
+          <input
+            type="text"
+            name="telephone"
+            placeholder="Téléphone"
+            class="border px-3 py-2 rounded"
+            required
+          />
+          <input
+            type="text"
+            name="adresse"
+            placeholder="Adresse"
+            class="border px-3 py-2 rounded"
+            required
+          />
+          <div class="flex justify-between mt-4">
+            <button
+              type="submit"
+              class="bg-blue-600 text-white px-4 py-2 rounded"
+            >
+              Enregistrer
+            </button>
+            <button
+              type="button"
+              id="cancelBtn"
+              class="bg-red-600 text-white px-4 py-2 rounded"
+            >
+              Annuler
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div
+      id="categorieModal"
+      class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50"
+    >
+      <div class="bg-white rounded-lg p-6 w-full max-w-md shadow-lg">
+        <h2 class="text-xl font-bold mb-4">Ajouter une Catégorie</h2>
+        <form id="categorieForm" class="space-y-4">
+          <input
+            type="text"
+            name="libelle"
+            placeholder="Libelle"
+            class="w-full border px-4 py-2 rounded"
+            required
+          />
+          <div class="flex gap-4">
+            <input
+              type="text"
+              name="unite"
+              placeholder="Unite par defaut"
+              class="w-1/2 border px-4 py-2 rounded"
+              required
+            />
+            <input
+              type="number"
+              name="valeur"
+              placeholder="Valeur en conversion"
+              class="w-1/2 border px-4 py-2 rounded"
+              required
+            />
+          </div>
+          <div class="flex justify-end gap-2">
+            <button
+              type="submit"
+              class="bg-blue-600 text-white px-4 py-2 rounded"
+            >
+              Enregistrer
+            </button>
+            <button
+              type="button"
+              id="cancelCategorieBtn"
+              class="bg-red-600 text-white px-4 py-2 rounded"
+            >
+              Annuler
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="modalOverlay" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
+      <!-- Modal -->
+      <div id="uniteModal" class="bg-white rounded-md shadow-lg w-full max-w-xl mx-4">
+          <!-- En-tête du modal -->
+          <div class="p-4 text-center border-b border-gray-200">
+              <h2 class="text-xl font-semibold">Ajouter une Unite</h2>
+          </div>
+
+          <!-- Corps du modal -->
+          <div class="p-6">
+              <!-- Premier champ -->
+              <div class="mb-4">
+                  <input type="text" id="nomUnite" placeholder="Tissu" class="w-full border border-gray-300 rounded-md p-2 mb-4">
+              </div>
+
+              <!-- Deuxième champ -->
+              <div class="mb-4">
+                  <label for="defaultUnit" class="block text-sm font-medium text-gray-700">Unité par défaut</label>
+                  <input type="text" id="defaultUnit" value="metre" title="Unité par défaut" class="w-full disabled border border-gray-300 rounded-md p-2 mb-4">
+              </div>
+
+              <!-- Champs de conversion -->
+              <div class="flex mb-4 space-x-2">
+                  <input type="text" id="libelleUnite" placeholder="Libelle de l'unite" class="flex-1 border border-gray-300 rounded-md p-2">
+                  <input type="text" id="valeurConversion" placeholder="Valeur en conversion" class="flex-1 border border-gray-300 rounded-md p-2">
+                  <button id="ajouterConversion" class="bg-black text-white rounded-md w-10 h-10 flex items-center justify-center text-xl font-bold">+</button>
+              </div>
+
+              <!-- Tableau des conversions -->
+              <div class="overflow-x-auto">
+                  <table class="w-full border-collapse">
+                      <thead>
+                          <tr class="bg-black text-white">
+                              <th class="p-3 text-left">Libelle</th>
+                              <th class="p-3 text-left">Conversion</th>
+                              <th class="p-3 text-left">Action</th>
+                          </tr>
+                      </thead>
+                      <tbody id="conversionsTable">
+                          <!-- Les conversions seront ajoutées ici dynamiquement -->
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+
+          <!-- Pied du modal -->
+          <div class="p-4 flex justify-end border-t border-gray-200">
+              <button id="enregistrerBtn" class="bg-blue-600 text-white px-8 py-2 rounded-md hover:bg-blue-700">
+                  Enregistrer
+              </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

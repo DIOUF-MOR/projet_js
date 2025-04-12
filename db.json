@@ -1,0 +1,164 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "email": "admin@gmail.com",
+      "password": "admin",
+      "role": "admin"
+    },
+    {
+      "id": 2,
+      "email": "user@gmail.com",
+      "password": "user",
+      "role": "user"
+    }
+  ],
+  "tissus": [
+    {
+      "id": 1,
+      "libelle": "bazin",
+      "fournisseur": 1,
+      "quantite": 10,
+      "prix": 1000,
+      "unites": [
+        1
+      ],
+      "categorie": 3,
+      "image": "https://example.com/image1.jpg"
+    },
+    {
+      "id": 2,
+      "libelle": "pagne",
+      "fournisseur": 2,
+      "quantite": 5,
+      "prix": 500,
+      "unites": [
+        1
+      ],
+      "categorie": 2,
+      "image": "https://example.com/image2.jpg"
+    },
+    {
+      "id": 3,
+      "libelle": "soie",
+      "fournisseur": 3,
+      "quantite": 8,
+      "prix": 2000,
+      "unites": [
+        2
+      ],
+      "categorie": 3,
+      "image": "https://example.com/image3.jpg"
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "libelle": "bazin",
+      "unite": "metre",
+      "valeur": 2
+    },
+    {
+      "id": 2,
+      "libelle": "pagne",
+      "unite": "metre",
+      "valeur": 1.5
+    },
+    {
+      "id": 3,
+      "libelle": "soie",
+      "unite": "metre",
+      "valeur": 3
+    },
+    {
+      "id": "6313",
+      "libelle": "Lib test",
+      "unite": "cm",
+      "valeur": 6
+    }
+  ],
+  "unites": [
+    {
+      "id": 1,
+      "libelle": "tissu",
+      "valeur": "metre"
+    },
+    {
+      "id": 2,
+      "libelle": "accessoire",
+      "valeur": "centimetre"
+    }
+  ],
+  "fournisseurs": [
+    {
+      "id": 1,
+      "prenom": "Jean",
+      "nom": "Dupont",
+      "adresse": "123 Rue de Paris",
+      "telephone": "0123456789"
+    },
+    {
+      "id": 2,
+      "prenom": "Marie",
+      "nom": "Curie",
+      "adresse": "456 Avenue des Champs-Élysées",
+      "telephone": "0987654321"
+    },
+    {
+      "id": 3,
+      "prenom": "Pierre",
+      "nom": "Durand",
+      "adresse": "789 Boulevard Saint-Germain",
+      "telephone": "0147258369"
+    },
+    {
+      "id": "b40e",
+      "prenom": "Balla",
+      "nom": "Fally",
+      "telephone": "12345",
+      "adresse": "Toube"
+    },
+    {
+      "id": "24e6",
+      "prenom": "Mor",
+      "nom": "Fally",
+      "telephone": "12345",
+      "adresse": "Toube"
+    },
+    {
+      "id": "2063",
+      "prenom": "Mor",
+      "nom": "Fally",
+      "telephone": "12345",
+      "adresse": "Toube"
+    },
+    {
+      "id": "c0f1",
+      "prenom": "Mor",
+      "nom": "Fally",
+      "telephone": "12345",
+      "adresse": "Toube"
+    },
+    {
+      "id": "bc37",
+      "prenom": "Mor",
+      "nom": "Diouf",
+      "telephone": "12345",
+      "adresse": "Dakar"
+    },
+    {
+      "id": "4b6c",
+      "prenom": "Mor",
+      "nom": "Diouf",
+      "telephone": "12345",
+      "adresse": "Toube"
+    },
+    {
+      "id": "74d6",
+      "prenom": "Mor",
+      "nom": "Fally",
+      "telephone": "12345",
+      "adresse": "Toube"
+    }
+  ]
+}
