@@ -4,12 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "json-server --watch db.json --port 3000"
+    "dev": "concurrently \"npm run tailwind\" \"npm run server\"",
+    "tailwind": "npx tailwindcss -i ./src/input.css -o ./public/style.css --watch",
+    "server": "json-server --watch db.json --port 3000"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "json-server": "^1.0.0-beta.3"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
   }
 }

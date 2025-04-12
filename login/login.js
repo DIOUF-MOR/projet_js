@@ -7,24 +7,28 @@ document.addEventListener("DOMContentLoaded", function () {
       const password = document.getElementById("password").value;
       if (username && password) {
         try {
-          const response = await fetch("http://localhost:3000/etudiants");
+          const response = await fetch("http://localhost:3000/tissus");
+          const usersResponse = await fetch("http://localhost:3000/users");
 
           if (!response.ok) {
             throw new Error("Erreur lors de la récupération des données.");
           }
-          const etudiants = await response.json();
-          // Trouver l'étudiant correspondant
-          const etudiant = etudiants.find(
+          const users = await usersResponse.json();
+          users.forEach((user) => {
+            console.log(user.email, user.password);
+            
+          })
+          const user = users.find(
             (e) => e.email === username && e.password === password
           );
-          if (etudiant) {
+          if (user) {
             console.log(
               "Connexion réussie :",
-              `email: ${etudiant.email}, password: ${etudiant.password}`
+              `email: ${user.email}, password: ${user.password}`
             );
             localStorage.setItem("isLoggedIn", "true");
-            localStorage.setItem("etudiant", JSON.stringify(etudiant));
-            window.location.href = "../navBar/nav.html";
+            localStorage.setItem("user", JSON.stringify(user));
+            window.location.href = "../approvisionnement/approvisionnement.html";
           } else {
             alert("Nom d'utilisateur ou mot de passe incorrect.");
           }
@@ -33,7 +37,10 @@ document.addEventListener("DOMContentLoaded", function () {
           alert("Impossible de se connecter au serveur.");
         }
       } else {
-        alert("Veuillez entrer un nom d'utilisateur et un mot de passe.");
+        username.classList.add("border", "bg-red-500");
+
+        password.classList.add("border", "border-red-500");
+        // alert("Veuillez entrer un nom d'utilisateur et un mot de passe.");
       }
     });
   } else {
